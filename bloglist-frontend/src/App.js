@@ -131,7 +131,7 @@ const App = () => {
         <div>
           <h1>Blog App</h1>
           <div style={hideWhenVisible}>
-            <button onClick={() => setLoginVisible(true)}>log in</button>
+            <button onClick={() => setLoginVisible(true)}>Log in</button>
           </div>
           <div style={showWhenVisible}>
             <LoginForm
@@ -141,7 +141,7 @@ const App = () => {
               handlePasswordChange={({ target }) => setPassword(target.value)}
               handleLogin={handleLogin}
             />
-            <button onClick={() => setLoginVisible(false)}>cancel</button>
+            <button onClick={() => setLoginVisible(false)}>Cancel</button>
           </div>
         </div>
       )
@@ -187,7 +187,9 @@ const App = () => {
         <button type='submit'>Logout</button>
       </form>< br/>
       <h2>Blogs:</h2>
-      {blogs.map(blog =>
+      {blogs
+      .sort((a, b) => a.likes < b.likes ? 1 : -1)
+      .map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
       {addBlogForm()}
