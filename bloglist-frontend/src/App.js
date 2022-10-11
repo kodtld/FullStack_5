@@ -157,6 +157,23 @@ const App = () => {
             })
     }
 
+    const removeBlog = id => {
+        
+      const blogToRemove = blogs.find(blog => blog.id === id)
+
+      if (window.confirm(`Delete ${blogToRemove.title}?`)){
+        blogService
+        .remove(blogToRemove.id)
+        setErrorMessage(`${blogToRemove.title} removed`)}
+          setTimeout(() => {
+              setNotifStatus("green")
+              setErrorMessage(null)
+              window.location.reload(false)
+          }, 4000)
+
+
+  }
+
     const loginForm = () => {
       const hideWhenVisible = { display: loginVisible ? 'none' : '' }
       const showWhenVisible = { display: loginVisible ? '' : 'none' }
@@ -224,7 +241,7 @@ const App = () => {
       {blogs
       .sort((a, b) => a.likes < b.likes ? 1 : -1)
       .map(blog =>
-        <Blog key={blog.id} blog={blog} updateBlog={updateBlog}/>
+        <Blog key={blog.id} blog={blog} updateBlog={updateBlog} removeBlog={removeBlog}/>
       )}
       {addBlogForm()}
     </div>
