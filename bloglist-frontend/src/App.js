@@ -5,6 +5,7 @@ import loginService from './services/login'
 import Notification from './components/Notification'
 import LoginForm from './components/loginForm'
 import AddBlogForm from './components/addBlogForm'
+import PropTypes from 'prop-types'
 
 const App = () => {
   const [blogs, setBlogs] = useState([]) 
@@ -175,6 +176,14 @@ const App = () => {
           </div>
         </div>
       )
+    }
+
+    LoginForm.propTypes = {
+      handleLogin: PropTypes.func.isRequired,
+      handleUsernameChange: PropTypes.func.isRequired,
+      handlePasswordChange: PropTypes.func.isRequired,
+      username: PropTypes.string.isRequired,
+      password: PropTypes.string.isRequired
     }
 
     const addBlogForm = () => {
