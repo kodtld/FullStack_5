@@ -52,9 +52,8 @@ const App = () => {
       blogService.setToken(user.token)
       setUsername('')
       setPassword('')
-
     } 
-    
+
     catch (exception) {
       console.log("naa")
       setNotifStatus("red")
@@ -177,8 +176,8 @@ const App = () => {
         </div>
       )
     }
-
-    LoginForm.propTypes = {
+    
+    loginForm.propTypes = {
       handleLogin: PropTypes.func.isRequired,
       handleUsernameChange: PropTypes.func.isRequired,
       handlePasswordChange: PropTypes.func.isRequired,
