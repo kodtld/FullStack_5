@@ -64,27 +64,6 @@ const App = () => {
     }
   }
 
-
-  const handleUsernameChange = event => {
-    setUsername(event.target.value)
-  }
-
-  const handlePasswordChange = event => {
-    setPassword(event.target.value)
-  }
-
-  const handleTitleChange = event => {
-    setTitle(event.target.value)
-  }
-
-  const handleAuthorChange = event => {
-      setAuthor(event.target.value)
-  }
-
-  const handleUrlChange = event => {
-      setUrl(event.target.value)
-  }
-
   const handleLogout = (event) =>{
     window.localStorage.removeItem('loggedBlogappUser')
   }
