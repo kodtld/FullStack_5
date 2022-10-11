@@ -123,6 +123,40 @@ const App = () => {
   
     }
 
+
+  const updateBlog = id => {
+        
+        const likedBlog = blogs.find(blog => blog.id === id)
+
+        const newBlog = {
+            title: likedBlog.title,
+            author: likedBlog.author,
+            url: likedBlog.url,
+            user: likedBlog.user,
+            likes: likedBlog.likes + 1
+    }
+
+        blogService
+            .update(id, newBlog)
+            .then(returnedBlog => {
+                setBlogs(
+                    blogs.map(blog => (blog.id === returnedBlog.id ? returnedBlog : blog))
+                )
+                setNotifStatus("green")
+                setErrorMessage('Like received')
+                setTimeout(() => {
+                    setErrorMessage(null)
+                }, 4000)
+            })
+            .catch(error => {
+                setNotifStatus("red")
+                setErrorMessage(error.response.data)
+                setTimeout(() => {
+                    setErrorMessage(null)
+                }, 4000)
+            })
+    }
+
     const loginForm = () => {
       const hideWhenVisible = { display: loginVisible ? 'none' : '' }
       const showWhenVisible = { display: loginVisible ? '' : 'none' }
@@ -190,7 +224,7 @@ const App = () => {
       {blogs
       .sort((a, b) => a.likes < b.likes ? 1 : -1)
       .map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} updateBlog={updateBlog}/>
       )}
       {addBlogForm()}
     </div>

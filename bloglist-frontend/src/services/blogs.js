@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useState } from 'react'
 const baseUrl = 'api/blogs'
 
 let token = null
@@ -30,7 +29,10 @@ const create = async newObject => {
 }
 
 const update = (id, newObject) => {
-  const request = axios.put(`${ baseUrl } /${id}`, newObject)
+  const config = {
+    headers: { Authorization: token },
+  }
+  const request = axios.put(`${baseUrl}/${id}`, newObject,config)
   return request.then(response => response.data)
 }
 
