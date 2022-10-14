@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const Blog = ({ blog, updateBlog, removeBlog}) => {
+const Blog = ({ title,author,url,likes,id, updateBlog, removeBlog}) => {
   const [more,setMore] =useState(false)
   const blogStyle = {
     paddingTop: 10,
@@ -13,12 +13,12 @@ const Blog = ({ blog, updateBlog, removeBlog}) => {
   if (more === true){  return (
     <div style={blogStyle}>
       <div> 
-        Title: {blog.title} < br/> 
-        Author: {blog.author} < br/>
-        URL: {blog.url} < br/>
-        Likes: {blog.likes} <button onClick={() => updateBlog(blog.id)}>Like</button> < br/>
+        Title: {title} < br/> 
+        Author: {author} < br/>
+        URL: {url} < br/>
+        Likes: {likes} <button onClick={() => updateBlog(id)}>Like</button> < br/>
         <button onClick={() => setMore(false)}>Hide</button> < br/>
-        <button onClick={() => removeBlog(blog.id)}>Remove blog</button>
+        <button onClick={() => removeBlog(id)}>Remove blog</button>
       </div>
   </div>
   )}
@@ -26,8 +26,8 @@ const Blog = ({ blog, updateBlog, removeBlog}) => {
   if (more === false){  return (
     <div style={blogStyle}>
       <div> 
-        Title: {blog.title} < br/>
-        Author: {blog.author} < br/>
+        Title: {title} < br/>
+        Author: {author}
         <button onClick={() => setMore(true)}>Show more</button>
       </div>
   </div>
