@@ -9,7 +9,7 @@ test('renders content', () => {
   const blog = {
     Title: "Hevon Harjat",
     Author: "Salli Mustonen",
-    URL: "www.hevonpaskat.com",
+    URL: "www.hevonharjat.com",
     Likes: 4000,
     id:123
   }
@@ -26,7 +26,7 @@ test('renders full info after "Show more" button press', async () => {
     const blog = {
         Title: "Hevon Harjat",
         Author: "Salli Mustonen",
-        URL: "www.hevonpaskat.com",
+        URL: "www.hevonharjat.com",
         Likes: 4000,
         id:123
       }
@@ -38,7 +38,7 @@ test('renders full info after "Show more" button press', async () => {
     await user.click(morebutton)
 
 
-    const title = screen.getByText('Title: Hevon Harjat Author: Salli Mustonen URL: www.hevonpaskat.com Likes: 4000')
+    const title = screen.getByText('Title: Hevon Harjat Author: Salli Mustonen URL: www.hevonharjat.com Likes: 4000')
     expect(title).toBeDefined()
   
 })
@@ -47,7 +47,7 @@ test('clicking the like-button twice == two calls for eventhandler', async () =>
     const blog = {
         Title: "Hevon Harjat",
         Author: "Salli Mustonen",
-        URL: "www.hevonpaskat.com",
+        URL: "www.hevonharjat.com",
         Likes: 4000,
         id:123
       }
