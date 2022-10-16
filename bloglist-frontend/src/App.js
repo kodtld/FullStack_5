@@ -17,7 +17,6 @@ const App = () => {
   const [author, setAuthor] = useState('') 
   const [url, setUrl] = useState('') 
   const [user, setUser] = useState(null)
-  const [loginVisible, setLoginVisible] = useState(false)
   const [newBlogVisible, setNewBlogVisible] = useState(false)
 
   useEffect(() => {
@@ -40,11 +39,12 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    
+    console.log(user)
     try {
       const user = await loginService.login({
         username, password,
-      })
+      });
+
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
       ) 
@@ -55,12 +55,11 @@ const App = () => {
     } 
 
     catch (exception) {
-      console.log("naa")
-      setNotifStatus("red")
       setErrorMessage('wrong credentials')
+      setNotifStatus("red")
       setTimeout(() => {
         setErrorMessage(null)
-      }, 4000)
+      }, 4000);
     }
   }
 
@@ -154,16 +153,11 @@ const App = () => {
   }
 
     const loginForm = () => {
-      const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-      const showWhenVisible = { display: loginVisible ? '' : 'none' }
-  
       return (
         <div>
+          <Notification message={errorMessage} notifStatus={notifStatus}/>
           <h1>Blog App</h1>
-          <div style={hideWhenVisible}>
-            <button onClick={() => setLoginVisible(true)}>Log in</button>
-          </div>
-          <div style={showWhenVisible}>
+          <div>
             <LoginForm
               username={username}
               password={password}
@@ -171,7 +165,6 @@ const App = () => {
               handlePasswordChange={({ target }) => setPassword(target.value)}
               handleLogin={handleLogin}
             />
-            <button onClick={() => setLoginVisible(false)}>Cancel</button>
           </div>
         </div>
       )
